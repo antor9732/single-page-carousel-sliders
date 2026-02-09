@@ -32,3 +32,6 @@ function my_plugin_woocommerce_templates( $template, $template_name, $template_p
 
     return $template;
 }
+
+
+require_once plugin_dir_path( __FILE__ ) . 'woocommerce/single-product/carousel-slider/releted-productcarousel.php';
