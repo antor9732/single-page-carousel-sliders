@@ -35,3 +35,4 @@ function my_plugin_woocommerce_templates( $template, $template_name, $template_p
 
 
 require_once plugin_dir_path( __FILE__ ) . 'woocommerce/single-product/carousel-slider/releted-productcarousel.php';
+require_once plugin_dir_path( __FILE__ ) . 'woocommerce/single-product/carousel-slider/testimonial-productcarousel.php';
