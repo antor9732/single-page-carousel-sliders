@@ -13,7 +13,7 @@ if (! defined('ABSPATH')) {
 /**
  * Display image carousel on product page
  */
-function display_product_testimonial_carousel()
+function display_product_review_carousel()
 {
     global $product;
 
@@ -25,38 +25,39 @@ function display_product_testimonial_carousel()
     $carousel_images = [];
 
     for ($i = 1; $i <= 10; $i++) {
-        $image_id = get_post_meta($product_id, 'review_image' . $i, true);
+        $image_id = get_post_meta($product_id, 'review_testimonial' . $i, true);
         if (! empty($image_id)) {
             $carousel_images[] = wp_get_attachment_url($image_id);
         }
     }
+
     if (empty($carousel_images)) {
         return;
     }
 ?>
 
-    <div class="testimonial-carousel-wrapper">
-        <div class="testimonial-image-carousel-slider">
+    <div class="review-carousel-wrapper">
+        <div class="image-carousel-slider">
             <?php foreach ($carousel_images as $image_url) : ?>
-                <div class="testimonial-carousel-slide">
+                <div class="review-carousel-slide">
                     <img
                         src="<?php echo esc_url($image_url); ?>"
                         alt="<?php echo esc_attr(get_the_title($product_id)); ?>"
-                        class="testimonial-carousel-image">
+                        class="review-carousel-image">
                 </div>
             <?php endforeach; ?>
-        </div> 
+        </div>
     </div>
 
 <?php
 }
-add_action('woocommerce_product_meta_end', 'display_product_testimonial_carousel');
+add_action('woocommerce_after_single_product', 'display_product_review_carousel');
 
 
 /**
  * Enqueue carousel assets
  */
-function enqueue_testimonial_carousel_assets()
+function enqueue_review_carousel_assets()
 {
 
     // Slick Carousel CSS
@@ -68,34 +69,34 @@ function enqueue_testimonial_carousel_assets()
 
     // Custom Styles
     wp_add_inline_style('slick-theme', '
-        .testimonial-carousel-wrapper {
-            max-width: 800px;
+        .review-carousel-wrapper {
+            max-width: 100%;
             margin: 40px auto;
         }
         
-        .testimonial-carousel-image {
-            width: 100%;
+        .review-carousel-image {
+            width: 260px;
             height: 250px;
             object-fit: cover;
             border-radius: 8px;
         }
-        .testimonial-carousel-slide {
+        .review-carousel-slide {
             padding: 0 10px;
         }
         @media (max-width: 1024px) {
-            .testimonial-carousel-image {
+            .review-carousel-image {
                 height: 85%;
             }
-          img.testimonial-carousel-image {
+          img.review-carousel-image {
                 width: 150px;
                 height: 100%;
             }
         }
         @media (max-width: 768px) {
-            .testimonial-carousel-image {
+            .review-carousel-image {
                 height: 200px;
             }
-          img.testimonial-carousel-image {
+          img.review-carousel-image {
                 width: 100%;
                 height: 100%;
             }
@@ -106,9 +107,9 @@ function enqueue_testimonial_carousel_assets()
     // Initialize Slick with 3 slides per page
     wp_add_inline_script('slick-carousel', '
         jQuery(document).ready(function($){
-            if ( $(".testimonial-image-carousel-slider").length ) {
-                $(".testimonial-image-carousel-slider").slick({
-                    slidesToShow: 3,
+            if ( $(".image-carousel-slider").length ) {
+                $(".image-carousel-slider").slick({
+                    slidesToShow: 5,
                     slidesToScroll: 1,
                     autoplay: true,
                     autoplaySpeed: 3000,
@@ -121,13 +122,19 @@ function enqueue_testimonial_carousel_assets()
                         {
                             breakpoint: 1024,
                             settings: {
-                                slidesToShow: 2
+                                slidesToShow: 5
                             }
                         },
                         {
                             breakpoint: 768,
                             settings: {
                                 slidesToShow: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1
                             }
                         }
                     ]
@@ -136,4 +143,4 @@ function enqueue_testimonial_carousel_assets()
         });
     ');
 }
-add_action('wp_enqueue_scripts', 'enqueue_testimonial_carousel_assets');
+add_action('wp_enqueue_scripts', 'enqueue_review_carousel_assets');
