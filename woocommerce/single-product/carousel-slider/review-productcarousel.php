@@ -48,7 +48,16 @@ function display_product_review_carousel()
             <?php endforeach; ?>
         </div>
     </div>
-
+<style> 
+    .review-carousel-wrapper .slick-arrow {
+            background-image: linear-gradient(90deg, #fcb043, #f5ef33) !important;
+            border: 1px solid linear-gradient(90deg, #fcb043, #f5ef33) !important;
+        }
+        .review-carousel-wrapper .slick-arrow:hover {
+            background-image: linear-gradient(90deg, #250e3d, #8B396B66) !important;
+            border: 1px solid linear-gradient(90deg, #fcb043, #f5ef33) !important;
+        }
+</style>
 <?php
 }
 add_action('woocommerce_after_single_product', 'display_product_review_carousel');
