@@ -25,7 +25,7 @@ function display_product_review_carousel()
     $carousel_images = [];
 
     for ($i = 1; $i <= 10; $i++) {
-        $image_id = get_post_meta($product_id, 'review_testimonial' . $i, true);
+        $image_id = get_post_meta($product_id, 'review_image' . $i, true);
         if (! empty($image_id)) {
             $carousel_images[] = wp_get_attachment_url($image_id);
         }
@@ -75,32 +75,21 @@ function enqueue_review_carousel_assets()
         }
         
         .review-carousel-image {
-            width: 260px;
-            height: 250px;
+            width: 100%;
             object-fit: cover;
             border-radius: 8px;
         }
         .review-carousel-slide {
             padding: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
         }
-        @media (max-width: 1024px) {
-            .review-carousel-image {
-                height: 85%;
-            }
-          img.review-carousel-image {
-                width: 150px;
-                height: 100%;
-            }
+        .slick-track {
+            display: flex !important;
+            gap: 20px !important;
+            align-items: flex-start;
         }
-        @media (max-width: 768px) {
-            .review-carousel-image {
-                height: 200px;
-            }
-          img.review-carousel-image {
-                width: 100%;
-                height: 100%;
-            }
-            }
+        
        
     ');
 
@@ -109,7 +98,7 @@ function enqueue_review_carousel_assets()
         jQuery(document).ready(function($){
             if ( $(".image-carousel-slider").length ) {
                 $(".image-carousel-slider").slick({
-                    slidesToShow: 5,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                     autoplay: true,
                     autoplaySpeed: 3000,
@@ -122,7 +111,7 @@ function enqueue_review_carousel_assets()
                         {
                             breakpoint: 1024,
                             settings: {
-                                slidesToShow: 5
+                                slidesToShow: 2
                             }
                         },
                         {

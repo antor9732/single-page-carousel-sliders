@@ -77,18 +77,18 @@ function display_related_products_slider()
                                 <div class="product-image">
                                     <?php echo $p->get_image('woocommerce_thumbnail'); ?>
                                 </div>
-                                <h3 class="product-title">
-                                    <?php echo esc_html($p->get_name()); ?>
+                                <!-- <h3 class="product-title">
+                                    <//?php echo esc_html($p->get_name()); ?>
                                 </h3>
                                 <div class="product-price">
-                                    <?php echo $p->get_price_html(); ?>
-                                </div>
+                                    <//?php echo $p->get_price_html(); ?>
+                                </div> -->
                             </a>
-                            <div class="product-action">
-                                <?php woocommerce_template_loop_add_to_cart([
+                            <!-- <div class="product-action">
+                                <//?php woocommerce_template_loop_add_to_cart([
                                     'product' => $p
                                 ]); ?>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -193,7 +193,7 @@ function display_related_products_slider()
             color: #0f0b16;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
+            cursor: pointer; 
             font-weight: 600;
             font-size: 13px;
             transition: all 0.3s ease;

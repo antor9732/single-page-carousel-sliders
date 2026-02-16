@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Product Image Carousel (Custom Fields)
- * Custom Fields: review_image1 to review_image10
+ * Product Testimonial Carousel (Custom Fields)
+ * Custom Fields: review_testimonial1 to review_testimonial10
  * Hook: woocommerce_product_meta_end
  */
 
@@ -25,7 +25,7 @@ function display_product_testimonial_carousel()
     $carousel_images = [];
 
     for ($i = 1; $i <= 10; $i++) {
-        $image_id = get_post_meta($product_id, 'review_image' . $i, true);
+        $image_id = get_post_meta($product_id, 'review_testimonial' . $i, true);
         if (! empty($image_id)) {
             $carousel_images[] = wp_get_attachment_url($image_id);
         }
@@ -75,31 +75,13 @@ function enqueue_testimonial_carousel_assets()
         
         .testimonial-carousel-image {
             width: 100%;
-            height: 250px;
+            height: 100% !important;
             object-fit: cover;
             border-radius: 8px;
         }
         .testimonial-carousel-slide {
             padding: 0 10px;
         }
-        @media (max-width: 1024px) {
-            .testimonial-carousel-image {
-                height: 85%;
-            }
-          img.testimonial-carousel-image {
-                width: 150px;
-                height: 100%;
-            }
-        }
-        @media (max-width: 768px) {
-            .testimonial-carousel-image {
-                height: 200px;
-            }
-          img.testimonial-carousel-image {
-                width: 100%;
-                height: 100%;
-            }
-            }
        
     ');
 
@@ -108,26 +90,26 @@ function enqueue_testimonial_carousel_assets()
         jQuery(document).ready(function($){
             if ( $(".testimonial-image-carousel-slider").length ) {
                 $(".testimonial-image-carousel-slider").slick({
-                    slidesToShow: 3,
+                    slidesToShow: 1,
                     slidesToScroll: 1,
-                    autoplay: true,
+                    autoplay: false,
                     autoplaySpeed: 3000,
                     speed: 600,
-                    infinite: true,
-                    arrows: true,
+                    infinite: false,
+                    arrows: false,
                     dots: true,
-                    adaptiveHeight: true,
+                    adaptiveHeight: false,
                     responsive: [
                         {
                             breakpoint: 1024,
                             settings: {
-                                slidesToShow: 2
+                                slidesToShow: 1
                             }
                         },
                         {
                             breakpoint: 768,
                             settings: {
-                                slidesToShow: 2
+                                slidesToShow: 1
                             }
                         }
                     ]
