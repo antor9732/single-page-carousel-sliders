@@ -63,7 +63,7 @@ function display_related_products_slick()
     // ------------------------------
 
 ?>
-    <section class="related-products-slider-section" style="margin-top: 40px;">
+    <section class="related-products-slider-section" style="margin-top: 40px; padding-bottom: 40px;">
         <h2 style="font-size: 24px; margin-bottom: 20px; font-weight: 600;">Related Products</h2>
 
         <div class="releted-carousel-slider" id="relatedProductsCarousel">
