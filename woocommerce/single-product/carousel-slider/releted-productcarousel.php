@@ -21,7 +21,7 @@ add_action('wp_enqueue_scripts', 'enqueue_releted_carousel_assets');
 /**
  * Display Related Products Slider
  */
-add_action('woocommerce_after_single_product_summary', 'display_related_products_slick');
+add_action('woocommerce_after_single_product', 'display_related_products_slick');
 
 function display_related_products_slick()
 {
